@@ -9,7 +9,9 @@ dist
 dist-ssr
 *.local
 
+## Files
 .env
+serviceAccountKey.json
 
 # Editor directories and files
 .vscode/*

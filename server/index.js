@@ -1,8 +1,6 @@
-require('dotenv').config();
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-console.log('CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
-console.log('CLIENT_SECRET:', process.env.GOOGLE_CLIENT_SECRET);
+require('dotenv').config();
+
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
@@ -25,10 +23,10 @@ passport.use(new GoogleStrategy({
     callbackURL: 'http://localhost:3000/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
     console.log('✔️ OAuth Success:', profile);
+    console.log('✔️ Access Token:', accessToken);
+    console.log('✔️ Refresh Token:', refreshToken);
     return done(null, profile);
 }));
-
-
 
 // Routes
 app.get('/auth/google', passport.authenticate('google', {
